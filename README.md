@@ -2,7 +2,7 @@
 
 Hi There!
 
-This is just another front-end development setup, simple and fast, it might not be lightweight enough, but it gets the job done and saves your time. Using this goat, you will be implementing these things into your workflow:
+This is just another front-end development setup, simple and fast, it might not be lightweight enough, but it gets the job done and saves your time. Riding this goat, you will be implementing these things into your workflow:
 
 - Gulp
 - Sass
