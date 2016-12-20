@@ -2,11 +2,13 @@
 
 Hi There!
 
-This is just another front-end development setup, simple and fast, it might not be lightweight enough, but it gets the job done and saves your time. Using Goat, you will be implementing these things into your workflow:
+This is just another front-end development setup, simple and fast, it might not be lightweight enough, but it gets the job done and saves your time. Using this goat, you will be implementing these things into your workflow:
 
 - Gulp
 - Sass
-- Erm.. no more liao
+- Livereload
+
+So, you will be writing sass and page will be reloaded upon your saving action.
 
 ## Dependencies
 
@@ -37,4 +39,12 @@ Some come-in-handy libraries are pre-installed
 
 ## Usage
 
-Download, rename and run gulp.
+Download, rename and run gulp in root folder.
+
+Write your scripts in src folder, and visit dist/{page name}.html folder in browser.
+
+### Livereload
+
+Live reload saves your R-key!
+
+Please go to https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei to install chrome plugin for livereloading. Once your gulp is running, visit your page and switch on the livereload extension in chrome.
