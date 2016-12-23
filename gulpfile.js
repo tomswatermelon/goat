@@ -75,7 +75,7 @@ gulp.task('html', function () {
 
 gulp.task('php', function () {
     gulp.src('src/*.php')
-        .pipe(gulp.dest('src/dist'))
+        .pipe(gulp.dest('dist'))
         .pipe(livereload());
 });
 
