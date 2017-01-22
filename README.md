@@ -18,6 +18,7 @@ You will need gulp (npm and shits of course) to run the workflow, and these thin
 - gulp-clean-css
 - gulp-concat
 - gulp-concat-css
+- gulp-autoprefixer
 - gulp-imagemin
 - gulp-jshint
 - gulp-livereload
