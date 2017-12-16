@@ -27,13 +27,14 @@ Run `npm install` to install these dependencies
 - gulp-sass
 - gulp-uglify
 - jshint
+- gulp-order
 
 
 ## Usage
 
-Download, rename and run `gulp` in root folder.
+Download and run `npm install`, once all dependencies are installed, run `gulp` in root folder, and you should able to see gulp running and watching the file changes.
 
-Write your scripts in src folder, and visit dist/{page name}.html folder in browser.
+You should write your stuff in src folder (please refer to the example file struture), and visit dist/{page name}.html (or .php) folder in browser.
 
 ### Livereload
 
