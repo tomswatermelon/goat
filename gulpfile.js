@@ -19,6 +19,7 @@ var cleanCSS = require('gulp-clean-css');
 var autoprefixer = require('gulp-autoprefixer');
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
+var order = require('gulp-order');
 var uglify = require('gulp-uglify');
 
 
@@ -44,17 +45,15 @@ gulp.task('sass', function () {
 
 gulp.task('js', function () {
 
-    gulp.src('src/js/*.js')
-    // .pipe(jshint())
-    // .pipe(jshint.reporter('default'))
-    .pipe(gulp.dest('dist/js'))
-
-    gulp.src('src/js/vendors/*.js')
-    // .pipe(jshint())
-    // .pipe(jshint.reporter('default'))
-    .pipe(concat('vendors.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('dist/js'));
+    gulp.src(['src/js/main.js','src/js/vendors/*.js','src/js/modules/*.js'])
+        .pipe(order([
+            'src/js/vendors/*.js',
+            'src/js/modules/*.js',
+            'src/js/main.js'
+        ], { base: './' }))
+        .pipe(concat('bundle.js'))
+        // .pipe(uglify())
+        .pipe(gulp.dest('dist/js'));
 
 });
 
@@ -63,7 +62,7 @@ gulp.task('img', function() {
 
     gulp.src('src/img/*.{png,jpg,gif,svg,ico}')
         .pipe(imagemin({
-        optimizationLevel: 7,
+        optimizationLevel: 6,
         progressive: true
     }))
         .pipe(gulp.dest('dist/img'))
@@ -90,8 +89,8 @@ gulp.task('php', function () {
 
 gulp.task('watch', function() {
     livereload.listen();
-    gulp.watch('src/css/*.scss', ['sass']);
-    gulp.watch('src/js/*.js', ['js']);
+    gulp.watch(['src/css/main.scss','src/css/*/*.scss'], ['sass']);
+    gulp.watch(['src/js/main.js','src/js/*/*.js'], ['js']);
     gulp.watch('src/*.html', ['html']);
     gulp.watch('src/*.php', ['php']);
     gulp.watch('src/img/*.{png,jpg,gif,svg,ico}', ['img']);

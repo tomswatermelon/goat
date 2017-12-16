@@ -1,3 +1,5 @@
+var example = new Example();
+
 $(function(){
     console.log('Hi There!');
 
