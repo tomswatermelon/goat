@@ -10,10 +10,6 @@ This is just another front-end development setup, simple and fast, it might not 
 
 So, you will be writing sass and page will be reloaded upon your saving action.
 
-## Dependencies
-
-Run `npm install` to install these dependencies
-
 ## Usage
 
 Download and run `npm install`, once all dependencies are installed, run `gulp` in root folder, and you should able to see gulp running and watching the file changes.
