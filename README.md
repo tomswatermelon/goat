@@ -14,22 +14,6 @@ So, you will be writing sass and page will be reloaded upon your saving action.
 
 Run `npm install` to install these dependencies
 
-- gulp
-- gulp-clean-css
-- gulp-concat
-- gulp-concat-css
-- gulp-autoprefixer
-- gulp-imagemin
-- gulp-jshint
-- gulp-livereload
-- gulp-notify
-- gulp-plumber
-- gulp-sass
-- gulp-uglify
-- jshint
-- gulp-order
-
-
 ## Usage
 
 Download and run `npm install`, once all dependencies are installed, run `gulp` in root folder, and you should able to see gulp running and watching the file changes.
