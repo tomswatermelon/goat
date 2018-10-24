@@ -1,0 +1,17 @@
+@import "modules/vars";
+@import "modules/utils";
+@import "modules/example";
+
+body {
+    font-family: main;
+    background: $dark;
+    color: $white;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+#app {
+    padding: 15px;
+}

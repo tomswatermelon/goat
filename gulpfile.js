@@ -1,8 +1,6 @@
 var gulp = require('gulp');
 gulp.task('default', function(){
-
     console.log('default gulp task...')
-
 });
 
 var plumber = require('gulp-plumber');
@@ -73,9 +71,8 @@ gulp.task('img', function() {
 });
 
 gulp.task('font', function () {
-    gulp.src('src/css/fonts/*.{ttf,eot,svg,woff,woff2,otf}')
-    .pipe(gulp.dest('dist/css/fonts'));
-
+    gulp.src('src/fonts/*.{ttf,eot,svg,woff,woff2,otf}')
+    .pipe(gulp.dest('dist/fonts'));
 });
 
 gulp.task('html', function () {
@@ -92,10 +89,11 @@ gulp.task('php', function () {
 
 gulp.task('watch', function() {
     livereload.listen();
-    gulp.watch(['src/css/main.scss','src/css/*/*.scss'], ['sass']);
+    gulp.watch(['src/css/*.scss','src/css/*/*.scss'], ['sass']);
     gulp.watch(['src/js/*.js','src/js/*/*.js'], ['js']);
     gulp.watch('src/*.html', ['html']);
     gulp.watch('src/*.php', ['php']);
+    gulp.watch('src/fonts/*.{ttf,eot,svg,woff,woff2,otf}', ['font']);
     gulp.watch('src/img/*.{png,jpg,gif,svg,ico}', ['img']);
 });
 
