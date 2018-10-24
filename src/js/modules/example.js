@@ -1,3 +1,3 @@
-var Example = function() {
-    console.log("Example Module loaded");
+var ExampleModule = function() {
+    console.log("Example module loaded");
 }
