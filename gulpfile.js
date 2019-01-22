@@ -11,8 +11,9 @@ var concat = require('gulp-concat');
 var order = require('gulp-order');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
+var stripdebug = require('gulp-strip-debug');
 var browserSync = require('browser-sync').create();
-
+var babel = require('gulp-babel');
 
 gulp.task('sass', function () {
     gulp.src('src/css/*.scss')
@@ -51,8 +52,13 @@ gulp.task('sass-pro', function () {
 
 gulp.task('js', function () {
 
-    gulp.src(['src/js/vendors/*.js','src/js/modules/*.js'])
+    gulp.src([
+        'node_modules/vue/dist/vue.min.js',
+        'src/js/vendors/*.js',
+        'src/js/modules/*.js'
+    ])
         .pipe(order([
+            'node_modules/vue/dist/vue.min.js',
             'src/js/vendors/*.js',
             'src/js/modules/*.js',
         ], { base: './' }))
@@ -60,22 +66,35 @@ gulp.task('js', function () {
         .pipe(gulp.dest('dist/js'));
 
     gulp.src('src/js/*.js')
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
         .pipe(gulp.dest('dist/js'));
 
 });
 
 gulp.task('js-pro', function () {
 
-    gulp.src(['src/js/vendors/*.js','src/js/modules/*.js'])
+    gulp.src([
+        'node_modules/vue/dist/vue.min.js',
+        'src/js/vendors/*.js',
+        'src/js/modules/*.js'
+    ])
         .pipe(order([
+            'node_modules/vue/dist/vue.min.js',
             'src/js/vendors/*.js',
             'src/js/modules/*.js',
         ], { base: './' }))
         .pipe(concat('common.js'))
+        .pipe(stripdebug())
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 
     gulp.src('src/js/*.js')
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(stripdebug())
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 
@@ -113,9 +132,9 @@ gulp.task('watch', function() {
     });
     gulp.watch(['src/css/*.scss','src/css/*/*.scss'], ['sass']);
     gulp.watch(['src/js/*.js','src/js/*/*.js'], ['js','reload']);
-    gulp.watch('src/*.html', ['html']);
-    gulp.watch('src/fonts/*.{ttf,eot,svg,woff,woff2,otf}', ['font']);
-    gulp.watch('src/img/*.{png,jpg,gif,svg,ico}', ['img']);
+    gulp.watch('src/*.html', ['html','reload']);
+    gulp.watch('src/fonts/*.{ttf,eot,svg,woff,woff2,otf}', ['font','reload']);
+    gulp.watch('src/img/*.{png,jpg,gif,svg,ico}', ['img','reload']);
 });
 
 
