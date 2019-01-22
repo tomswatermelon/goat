@@ -2,6 +2,7 @@
 
 - Gulp
 - Sass
+- Vue 
 - BrowserSync 
 
 ## Usage
