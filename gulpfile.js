@@ -65,10 +65,18 @@ gulp.task('js', function () {
         .pipe(concat('common.js'))
         .pipe(gulp.dest('dist/js'));
 
-    gulp.src('src/js/*.js')
+    gulp.src([
+        'src/js/*.js',
+        'src/js/modules/*.js' 
+    ])
+        .pipe(order([
+            'src/js/*.js',
+            'src/js/modules/*.js',
+        ], { base: './' }))
         .pipe(babel({
             presets: ['@babel/env']
         }))
+        .pipe(concat('index.js'))
         .pipe(gulp.dest('dist/js'));
 
 });
@@ -90,12 +98,20 @@ gulp.task('js-pro', function () {
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 
-    gulp.src('src/js/*.js')
+    gulp.src([
+        'src/js/*.js',
+        'src/js/modules/*.js' 
+    ])
+        .pipe(order([
+            'src/js/*.js',
+            'src/js/modules/*.js',
+        ], { base: './' }))
         .pipe(babel({
             presets: ['@babel/env']
         }))
         .pipe(stripdebug())
         .pipe(uglify())
+        .pipe(concat('index.js'))
         .pipe(gulp.dest('dist/js'));
 
 });
@@ -134,10 +150,9 @@ gulp.task('watch', function() {
     gulp.watch(['src/js/*.js','src/js/*/*.js'], ['js','reload']);
     gulp.watch('src/*.html', ['html','reload']);
     gulp.watch('src/fonts/*.{ttf,eot,svg,woff,woff2,otf}', ['font','reload']);
-    gulp.watch('src/img/*.{png,jpg,gif,svg,ico}', ['img','reload']);
 });
 
 
 
-gulp.task('dev', ['sass','js','img','html','font','watch']);
-gulp.task('production',['sass-pro','js-pro','img','html','font'])
+gulp.task('dev', ['sass','js','html','font','watch']);
+gulp.task('production',['sass-pro','js-pro','html','font'])
